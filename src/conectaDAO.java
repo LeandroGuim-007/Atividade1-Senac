@@ -16,12 +16,13 @@ import javax.swing.JOptionPane;
  */
 public class conectaDAO {
 
-    Connection conn = null;
+    private Connection conn = null;
+    private static final Logger LOGGER = Logger.getLogger(conectaDAO.class.getName());
 
     public Connection connectDB() {
 
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/uc11?user=root&password=Leandro007.");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/uc11?useSSL=false&user=root&password=Leandro007.");
 
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro ConectaDAO" + erro.getMessage());
@@ -33,9 +34,10 @@ public class conectaDAO {
         try {
             if (conn != null && !conn.isClosed()) {
                 conn.close();
-                System.out.println("desconectado com sucesso");
+                LOGGER.info("desconectado com sucesso");
             }
         } catch (SQLException ex) {
+            LOGGER.info("erro para desconectar");
         }
     }
 }

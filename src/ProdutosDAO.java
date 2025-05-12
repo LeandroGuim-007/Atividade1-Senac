@@ -22,9 +22,10 @@ public class ProdutosDAO {
     PreparedStatement prep;
     ResultSet resultset;
     ArrayList<ProdutosDTO> listagem = new ArrayList<>();
+    conectaDAO cDAO = new conectaDAO();
     
     public void cadastrarProduto (ProdutosDTO produto){
-        conn = new conectaDAO().connectDB();
+        conn = cDAO.connectDB();
      try {   
         PreparedStatement ps = conn.prepareStatement("INSERT INTO produtos(nome, valor, status) values (?,?,?)");
         ps.setString(1, produto.getNome());
@@ -36,11 +37,11 @@ public class ProdutosDAO {
          JOptionPane.showMessageDialog(null, "Erro ao cadastrar o produto, por  favor verifique os dados informados!");
          System.out.println(se.getMessage());
      }finally {
-         new conectaDAO().desconnectBD();
+         cDAO.desconnectBD();
      }
     }
     
-    public ArrayList<ProdutosDTO> listarProdutos(){     
+    public ArrayList<ProdutosDTO> listarProdutos(){      
         return listagem;
     }
     
