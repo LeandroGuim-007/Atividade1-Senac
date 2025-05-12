@@ -31,6 +31,7 @@ public class ProdutosDAO {
         ps.setInt(2, produto.getValor());
         ps.setString(3, produto.getStatus());
         ps.executeUpdate();
+        JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
      }catch (SQLException se) {
          JOptionPane.showMessageDialog(null, "Erro ao cadastrar o produto, por  favor verifique os dados informados!");
          System.out.println(se.getMessage());
@@ -39,8 +40,7 @@ public class ProdutosDAO {
      }
     }
     
-    public ArrayList<ProdutosDTO> listarProdutos(){
-        
+    public ArrayList<ProdutosDTO> listarProdutos(){     
         return listagem;
     }
     
