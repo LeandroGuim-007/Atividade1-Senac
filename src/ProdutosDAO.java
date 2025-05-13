@@ -64,4 +64,16 @@ public class ProdutosDAO {
         return listagem;
     }
 
+    public boolean venderProduto(int id) {
+        try {
+            conn = cDAO.connectDB();
+            PreparedStatement ps = conn.prepareStatement("UPDATE produtos SET status = \'vendido\' WHERE id = " + id);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Produto vendido com sucesso!");
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutosDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
 }
