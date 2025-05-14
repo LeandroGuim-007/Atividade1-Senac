@@ -77,8 +77,6 @@ public class ProdutosDAO {
         }
     }
         
-          
-
     public ArrayList<ProdutosDTO> listarProdutosVendidos() {
         try {
             conn = cDAO.connectDB();
